@@ -30,6 +30,7 @@ class ThreadRepository
      */
     public function getProviderThreadsIndex(): Collection
     {
+        dd($this->messenger->getProvider());
         return Thread::hasProvider($this->messenger->getProvider())
             ->latest('updated_at')
             ->with([

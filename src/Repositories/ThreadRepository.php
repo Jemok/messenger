@@ -30,7 +30,6 @@ class ThreadRepository
      */
     public function getProviderThreadsIndex(): Collection
     {
-        dd($this->messenger->getProvider());
         return Thread::hasProvider($this->messenger->getProvider())
             ->latest('updated_at')
             ->with([
@@ -38,6 +37,7 @@ class ThreadRepository
                 'latestMessage.owner',
                 'activeCall.participants.owner',
             ])
+            ->where('organization_id', $this->messenger->getProvider())
             ->limit($this->messenger->getThreadsIndexCount())
             ->get();
     }

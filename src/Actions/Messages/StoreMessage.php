@@ -66,6 +66,8 @@ class StoreMessage extends NewMessageAction
                             array $params,
                             ?string $senderIp = null): self
     {
+        $thread->organization_id = $this->messenger->getProvider()->getAttributes()['organization_id'];
+        $thread->save();
         $this->setThread($thread)
             ->setMessageType(Message::MESSAGE)
             ->setMessageBody($this->emoji->toShort($params['message']) ?: null)

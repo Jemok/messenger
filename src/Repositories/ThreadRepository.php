@@ -37,7 +37,7 @@ class ThreadRepository
                 'latestMessage.owner',
                 'activeCall.participants.owner',
             ])
-            ->where('organization_id', $this->messenger->getProvider())
+            ->where('organization_id', $this->messenger->getProvider()->getAttributes()['organization_id'])
             ->limit($this->messenger->getThreadsIndexCount())
             ->get();
     }

@@ -134,6 +134,19 @@ class MessengerComposer
     }
 
     /**
+     * When executing the action, no events will be dispatched
+     *
+     * @param  bool  $withoutEvents
+     * @return $this
+     */
+    public function noEvents(): self
+    {
+        $this->emitActionEvents = false;
+
+        return $this;
+    }
+
+    /**
      * Send a message. Optional reply to message ID and extra data allowed.
      *
      * @param  string|null  $message
